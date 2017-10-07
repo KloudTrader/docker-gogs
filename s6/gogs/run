@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export USER=git
+export HOME=/data
+
+PUID=${PUID:-801}
+PGID=${PGID:-801}
+groupmod -o -g "$PGID" git
+usermod -o -u "$PUID" git
+
+chown git /data /data/gogs.db
+chown git -R /data/log /data/repositories /data/sessions /data/.ssh
+chmod 700 /data/.ssh
+chmod 0600 /data/ssh/*
+
+exec su-exec $USER /app/gogs web --config /config/app.ini
