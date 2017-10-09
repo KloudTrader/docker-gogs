@@ -55,7 +55,7 @@ docker run \
     --name gogs \
     --rm \
     -e PUID=$(id -u) \
-    -e PGID=$(id=g) \
+    -e PGID=$(id -g) \
     -v /home/gogs/config:/config:ro \
     -v /home/gogs/data:/data \
     -p 22:22 \
