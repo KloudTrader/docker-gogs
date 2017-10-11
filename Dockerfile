@@ -6,6 +6,7 @@ ENV OVERLAY_VERSION=1.20.0.0
 RUN apk add --no-cache \
     bash \
     ca-certificates \
+    curl \
     git \
     linux-pam \
     openssh \
@@ -23,7 +24,6 @@ WORKDIR /gopath/src/github.com/gogits/gogs
 
 RUN apk add --no-cache --virtual=build-dependencies \
         alpine-sdk \
-        curl \
         go \
         linux-pam-dev \
     && curl -L "https://github.com/just-containers/s6-overlay/releases/download/v${OVERLAY_VERSION}/s6-overlay-amd64.tar.gz" | tar zx -C / \
