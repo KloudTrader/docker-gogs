@@ -26,6 +26,9 @@ docker run \
     -v /home/gogs/s6:/var/run/s6 \
     -p 22:22 \
     -p 3000:3000 \
+    --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
+    --health-interval=5s \
+    --health-retries=3 \
     -t robertbeal/gogs
 ```
 
@@ -45,6 +48,9 @@ docker run \
     -v /home/gogs/s6:/var/run/s6 \
     -p 22:22 \
     -p 3000:3000 \
+    --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
+    --health-interval=5s \
+    --health-retries=3 \
     -t robertbeal/gogs
 ```
 
@@ -62,5 +68,8 @@ docker run \
     -v /home/gogs/data:/data \
     -p 22:22 \
     -p 3000:3000 \
+    --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
+    --health-interval=5s \
+    --health-retries=3 \
     -t robertbeal/gogs
 ```
