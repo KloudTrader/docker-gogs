@@ -47,8 +47,7 @@ COPY s6 /etc/services.d
 
 WORKDIR /data
 
-VOLUME ["/config"]
-VOLUME ["/data"]
-EXPOSE 22/TCP 3000/TCP
+VOLUME /config /data
+EXPOSE 22 3000
 
 ENTRYPOINT ["/init"]
