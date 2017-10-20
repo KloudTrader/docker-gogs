@@ -3,12 +3,7 @@ services:
 
 before_install:
   - docker build -t robertbeal/gogs .
-  - docker run -d \
-    --name gogs \
-    --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
-    --health-interval=5s \
-    --health-retries=3 \
-    robertbeal/gogs
+  - docker run -d --name gogs --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" --health-interval=5s --health-retries=3 robertbeal/gogs
 
 script:
   - sleep 15
