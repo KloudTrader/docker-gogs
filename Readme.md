@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/robertbeal/docker-gogs.svg?branch=master)](https://travis-ci.org/robertbeal/gogs)
+[![](https://images.microbadger.com/badges/image/robertbeal/gogs.svg)](https://microbadger.com/images/robertbeal/gogs "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/robertbeal/gogs.svg)](https://microbadger.com/images/robertbeal/gogs "Get your own version badge on microbadger.com")
+[![](https://img.shields.io/docker/pulls/robertbeal/gogs.svg)](https://hub.docker.com/r/robertbeal/gogs/)
+[![](https://img.shields.io/docker/stars/robertbeal/gogs.svg)](https://hub.docker.com/r/robertbeal/gogs/)
+[![](https://img.shields.io/docker/automated/robertbeal/gogs.svg)](https://hub.docker.com/r/robertbeal/gogs/)
+
 # Gogs
 
 A production optimised version of Gogs, able to run in `--read-only` mode. The only caveat is that you need to mount the s6 volume (to make it writable) as s6 will need to do some writing.
