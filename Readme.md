@@ -20,7 +20,7 @@ Runs using a user `git:801`, so there are a number of options for running the co
 
 1. Create a host user with matching UID and run the container via that user:
 
-`sudo useradd --no-create-home --system --shell /bin/false --groups docker --uid 801 foo`
+`sudo useradd --no-create-home --system --shell /bin/false --uid 801 foo`
 
 ```
 docker run \
