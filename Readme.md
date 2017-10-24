@@ -41,7 +41,7 @@ docker run \
 
 2. Mount `/etc/passwd`  and create a host user with matching name:
 
-`sudo useradd --no-create-home --system --shell /bin/false --groups docker git`
+`sudo useradd --no-create-home --system --shell /bin/false git`
 
 ```
 docker run \
