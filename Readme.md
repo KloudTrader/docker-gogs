@@ -69,8 +69,8 @@ It is possible to define a UID and GID to the container but `--read-only` won't 
 docker run \
     --name gogs \
     --rm \
-    -e PUID=$(id -u) \
-    -e PGID=$(id -g) \
+    -e UID=$(id -u) \
+    -e GID=$(id -g) \
     -v /home/gogs/config:/config:ro \
     -v /home/gogs/data:/data \
     -p 22:22 \

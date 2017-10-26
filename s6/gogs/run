@@ -3,12 +3,12 @@
 export USER=git
 export HOME=/data
 
-if [[ -v "${PGID}" ]]; then
-    groupmod -o -g "$PGID" git
+if [[ -n "${GID}" ]]; then
+    groupmod -o -g $GID git
 fi
 
-if [[ -v "${PUID}" ]]; then
-    usermod -o -u "$PUID" git
+if [[ -n "${UID}" ]]; then
+    usermod -o -u $UID git
 fi
 
 
