@@ -13,8 +13,11 @@ RUN apk add --no-cache \
     shadow \
     su-exec
 
-RUN addgroup -g 801 git \
-    && adduser -s /bin/bash -D -h /data -u 801 -G git git \
+ARG UID=801
+ARG GID=801
+
+RUN addgroup -g $GID git \
+    && adduser -s /bin/bash -D -h /data -u $UID -G git git \
     && usermod -p '*' git \
     && passwd -u git
 

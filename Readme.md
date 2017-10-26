@@ -80,3 +80,14 @@ docker run \
     --health-retries=3 \
     -t robertbeal/gogs
 ```
+
+## Set your own UID/GID during build
+
+As a final option, should you wish, you can specify your own UID and GID for the `git` user when building the image.
+
+```
+docker build \
+    --build-arg=UID=1234 \
+    --build-arg=GID=5678 \
+    -t gogs .
+```
