@@ -18,7 +18,7 @@ Other services that run on the image:
 
 Runs using a user `git:801`, so there are a number of options for running the container...
 
-1. Create a host user with matching UID and run the container via that user:
+1. Create a host user with matching UID:
 
 `sudo useradd --no-create-home --system --shell /bin/false --uid 801 foo`
 
