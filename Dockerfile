@@ -50,6 +50,7 @@ COPY s6 /etc/services.d
 
 WORKDIR /data
 
+HEALTHCHECK --interval=30s --retries=3 CMD curl --fail http://localhost:3000/healthcheck || exit 1
 VOLUME /config /data
 EXPOSE 22 3000
 
