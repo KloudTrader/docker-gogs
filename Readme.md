@@ -12,7 +12,7 @@ A production optimised version of Gogs, able to run in `--read-only` mode. The o
 Other services that run on the image:
 
 * crond
-* ssh (port 22)
+* ssh (port 22222)
 
 ## Running in read-only mode
 
