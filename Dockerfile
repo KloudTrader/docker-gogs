@@ -10,8 +10,7 @@ RUN apk add --no-cache \
     git \
     linux-pam \
     openssh \
-    shadow \
-    su-exec
+    shadow
 
 ARG UID=801
 ARG GID=801

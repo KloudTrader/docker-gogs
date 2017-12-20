@@ -11,10 +11,6 @@ if [[ -n "${UID}" ]]; then
     usermod -o -u $UID git
 fi
 
-
-chown git /data /data/gogs.db
-chown git -R /data/log /data/repositories /data/sessions /data/.ssh
 chmod 700 /data/.ssh
-chmod 0600 /data/ssh/*
 
-exec su-exec $USER /app/gogs web --config /config/app.ini
+exec s6-setuidgid $USER /app/gogs web --config /config/app.ini

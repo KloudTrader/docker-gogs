@@ -18,9 +18,7 @@ if ! test -f /data/ssh/ssh_host_ed25519_key; then
     ssh-keygen -q -f /data/ssh/ssh_host_ed25519_key -N '' -t ed25519
 fi
 
-# Set correct right to ssh keys
-chown -R root:root /data/ssh/*
 chmod 0700 /data/ssh
 chmod 0600 /data/ssh/*
 
-exec su-exec root /usr/sbin/sshd -D -f /etc/ssh/sshd_config
+exec s6-setuidgid root /usr/sbin/sshd -D -f /etc/ssh/sshd_config
