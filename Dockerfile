@@ -2,6 +2,13 @@ FROM alpine:3.7
 
 ENV GOGS_VERSION=0.11.34
 ENV OVERLAY_VERSION=1.21.2.1
+ENV GOPATH /gopath
+ENV PATH $PATH:$GOPATH/bin
+
+WORKDIR /gopath/src/github.com/gogits/gogs
+
+ARG UID=801
+ARG GID=801
 
 RUN apk add --no-cache \
     bash \
@@ -10,21 +17,12 @@ RUN apk add --no-cache \
     git \
     linux-pam \
     openssh \
-    shadow
-
-ARG UID=801
-ARG GID=801
-
-RUN addgroup -g $GID git \
+    shadow \
+    && addgroup -g $GID git \
     && adduser -s /bin/bash -D -h /data -u $UID -G git git \
     && usermod -p '*' git \
-    && passwd -u git
-
-ENV GOPATH /gopath
-ENV PATH $PATH:$GOPATH/bin
-WORKDIR /gopath/src/github.com/gogits/gogs
-
-RUN apk add --no-cache --virtual=build-dependencies \
+    && passwd -u git \
+    && apk add --no-cache --virtual=build-dependencies \
         alpine-sdk \
         go \
         linux-pam-dev \
