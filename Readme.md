@@ -36,7 +36,7 @@ docker run \
     --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
     --health-interval=5s \
     --health-retries=3 \
-    -t robertbeal/gogs
+    robertbeal/gogs
 ```
 
 2. Mount `/etc/passwd`  and create a host user with matching name:
@@ -58,7 +58,7 @@ docker run \
     --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
     --health-interval=5s \
     --health-retries=3 \
-    -t robertbeal/gogs
+    robertbeal/gogs
 ```
 
 ## Running in writable mode
@@ -78,7 +78,7 @@ docker run \
     --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
     --health-interval=5s \
     --health-retries=3 \
-    -t robertbeal/gogs
+    robertbeal/gogs
 ```
 
 ## Set your own UID/GID during build
