@@ -27,12 +27,16 @@ docker run \
     --name gogs \
     --rm \
     --read-only \
-    --tmpfs /tmp \
+    --tmpfs /tmp:rw,size=100000k \
     -v /home/gogs/config:/config:ro \
     -v /home/gogs/data:/data \
     -v /home/gogs/s6:/var/run/s6 \
     -p 127.0.0.1:22:22222 \
     -p 127.0.0.1:3000:3000 \
+    --cpus=".3" \
+    --memory="250m" \
+    --pids-limit 50 \
+    --security-opt="no-new-privileges:true" \
     --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
     --health-interval=5s \
     --health-retries=3 \
@@ -48,13 +52,17 @@ docker run \
     --name gogs \
     --rm \
     --read-only \
-    --tmpfs /tmp \
+    --tmpfs /tmp:rw,size=100000k \
     -v /etc/passwd:/etc/passwd:ro \
     -v /home/gogs/config:/config:ro \
     -v /home/gogs/data:/data \
     -v /home/gogs/s6:/var/run/s6 \
     -p 127.0.0.1:22:22222 \
     -p 127.0.0.1:3000:3000 \
+    --cpus=".3" \
+    --memory="250m" \
+    --pids-limit 50 \
+    --security-opt="no-new-privileges:true" \
     --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
     --health-interval=5s \
     --health-retries=3 \
@@ -75,6 +83,9 @@ docker run \
     -v /home/gogs/data:/data \
     -p 127.0.0.1:22:22222 \
     -p 127.0.0.1:3000:3000 \
+    --cpus=".3" \
+    --memory="250m" \
+    --pids-limit 50 \
     --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" \
     --health-interval=5s \
     --health-retries=3 \
