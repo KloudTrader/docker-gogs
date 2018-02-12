@@ -28,9 +28,9 @@ docker run \
     --rm \
     --read-only \
     --tmpfs /tmp:rw,size=100000k \
-    -v /home/gogs/config:/config:ro \
-    -v /home/gogs/data:/data \
-    -v /home/gogs/s6:/var/run/s6 \
+    -v /var/gogs/config:/config:ro \
+    -v /var/gogs/data:/data \
+    -v /var/gogs/s6:/var/run/s6 \
     -p 127.0.0.1:22:22222 \
     -p 127.0.0.1:3000:3000 \
     --cpus=".3" \
@@ -54,9 +54,9 @@ docker run \
     --read-only \
     --tmpfs /tmp:rw,size=100000k \
     -v /etc/passwd:/etc/passwd:ro \
-    -v /home/gogs/config:/config:ro \
-    -v /home/gogs/data:/data \
-    -v /home/gogs/s6:/var/run/s6 \
+    -v /var/gogs/config:/config:ro \
+    -v /var/gogs/data:/data \
+    -v /var/gogs/s6:/var/run/s6 \
     -p 127.0.0.1:22:22222 \
     -p 127.0.0.1:3000:3000 \
     --cpus=".3" \
@@ -79,8 +79,8 @@ docker run \
     --rm \
     -e UID=$(id -u) \
     -e GID=$(id -g) \
-    -v /home/gogs/config:/config:ro \
-    -v /home/gogs/data:/data \
+    -v /var/gogs/config:/config:ro \
+    -v /var/gogs/data:/data \
     -p 127.0.0.1:22:22222 \
     -p 127.0.0.1:3000:3000 \
     --cpus=".3" \
