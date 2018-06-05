@@ -27,7 +27,7 @@ RUN apk add --no-cache \
         go \
         linux-pam-dev \
     && curl -L "https://github.com/just-containers/s6-overlay/releases/download/v${OVERLAY_VERSION}/s6-overlay-amd64.tar.gz" | tar zx -C / \
-    && curl -L https://github.com/gogits/gogs/archive/v$GOGS_VERSION.tar.gz | tar zx \
+    && curl -L https://github.com/gogs/gogs/archive/v$GOGS_VERSION.tar.gz | tar zx \
     && mv gogs-$GOGS_VERSION/* . \
     && go get -v -tags "sqlite redis memcache cert pam" \
     && go build -tags "sqlite redis memcache cert pam" \
