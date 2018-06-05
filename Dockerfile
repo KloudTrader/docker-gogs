@@ -5,7 +5,7 @@ ENV OVERLAY_VERSION=1.21.4.0
 ENV GOPATH /gopath
 ENV PATH $PATH:$GOPATH/bin
 
-WORKDIR /gopath/src/github.com/gogits/gogs
+WORKDIR /gopath/src/github.com/gogs/gogs
 
 ARG UID=801
 ARG GID=801
