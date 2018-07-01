@@ -1,4 +1,5 @@
 FROM alpine:3.7
+LABEL maintainer="rob@kohi.uk"
 
 ENV GOGS_VERSION=0.11.53
 ENV OVERLAY_VERSION=1.21.4.0
