@@ -1,10 +1,31 @@
-services:
-  - docker
+services: docker
+language: bash
 
-before_install:
-  - docker build -t robertbeal/gogs .
-  - docker run -d --name gogs --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" --health-interval=5s --health-retries=3 robertbeal/gogs
+env:
+  global:
+    - VERSION=0.11.53
+    - OVERLAY_VERSION=1.21.4.0
+  matrix:
+    - ARCH=i386 FILE=x86
+    - ARCH=amd64 FILE=amd64
+    - ARCH=arm FILE=arm
+    - ARCH=aarch64 FILE=aarch64
 
-script:
+before_script:
+  - ./build.sh $ARCH
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
+script:  
+  - docker build -t robertbeal/gogs:$ARCH -t robertbeal/gogs:$ARCH.$VERSION --build-arg=VERSION=$VERSION --build-arg=OVERLAY_VERSION=$OVERLAY_VERSION --build-arg=ARCH=$FILE --file Dockerfile.$ARCH .
+  - docker run -d --name=gogs-$ARCH --health-cmd="curl --fail http://localhost:3000/healthcheck || exit 1" --health-interval=5s --health-retries=3 robertbeal/gogs:$ARCH
   - sleep 15
-  - if [[ -z 'docker ps --filter="name=gogs" --filter="health=healthy" -q' ]]; then exit 1; fi
+  - if [[ -z 'docker ps --filter="name=gogs-$ARCH" --filter="health=healthy" -q' ]]; then exit 1; fi
+
+deploy:
+  provider: script
+  script:
+    echo "$DOCKER_PWD" | docker login -u "$DOCKER_USER" --password-stdin &&
+    docker push robertbeal/gogs:$ARCH &&
+    docker push robertbeal/gogs:$ARCH.$VERSION;
+  on:
+    branch: master

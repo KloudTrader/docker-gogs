@@ -1,8 +1,9 @@
 FROM alpine:3.7
 LABEL maintainer="rob@kohi.uk"
 
-ENV GOGS_VERSION=0.11.53
-ENV OVERLAY_VERSION=1.21.4.0
+ARG ARCH=amd64
+ARG VERSION=0.11.53
+ARG OVERLAY_VERSION=1.21.4.0
 ENV GOPATH /gopath
 ENV PATH $PATH:$GOPATH/bin
 
@@ -27,9 +28,9 @@ RUN apk add --no-cache \
         alpine-sdk \
         go \
         linux-pam-dev \
-    && curl -L "https://github.com/just-containers/s6-overlay/releases/download/v${OVERLAY_VERSION}/s6-overlay-amd64.tar.gz" | tar zx -C / \
-    && curl -L https://github.com/gogs/gogs/archive/v$GOGS_VERSION.tar.gz | tar zx \
-    && mv gogs-$GOGS_VERSION/* . \
+    && curl -L "https://github.com/just-containers/s6-overlay/releases/download/v${OVERLAY_VERSION}/s6-overlay-${ARCH}.tar.gz" | tar zx -C / \
+    && curl -L https://github.com/gogs/gogs/archive/v$VERSION.tar.gz | tar zx \
+    && mv gogs-$VERSION/* . \
     && go get -v -tags "sqlite redis memcache cert pam" \
     && go build -tags "sqlite redis memcache cert pam" \
     && mkdir /app \
