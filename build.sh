@@ -9,5 +9,5 @@ case ${arch} in
     aarch64 ) base_image="resin/aarch64-alpine" ;;
 esac
 cp Dockerfile Dockerfile.${arch}
-sed -i "s@alpine:3.7@$base_image@g" Dockerfile.${arch}
+sed -i "s@alpine:\([0-9]\+\).\([0-9]\+\)@$base_image@g" Dockerfile.${arch}
 
